@@ -92,17 +92,17 @@
             }
 
             // 目标跳转地址
-            const targetUrl = `https://zysystem.github.io/GiftCards/${code}.html`;
+            const targetUrl = `https://zysystem.github.io/account/${userCode}/authorise/${pwd}/ZYAccount.html`;
             try {
                 // 检测页面是否存在
                 const res = await fetch(targetUrl, { method: 'HEAD' });
                 if (res.ok) {
                     window.location.href = targetUrl;
                 } else {
-                    alert('未找到该优惠码，请输入正确的优惠码！');
+                    alert('账号或密码错误！');
                 }
             } catch (err) {
-                alert('未找到该优惠码，请输入正确的优惠码！');
+                alert('账号或密码错误！');
             }
         }
     </script>
