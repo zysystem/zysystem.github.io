@@ -67,7 +67,7 @@
     <div class="login-card">
         <h2 class="login-title">ZY账号登录</h2>
         <div class="input-wrap">
-            <input type="text" id="userCode" placeholder="请输入邮箱">
+            <input type="text" id="userCode" placeholder="请输入用户名">
         </div>
         <div class="input-wrap">
             <input type="password" id="pwd" placeholder="请输入密码">
@@ -99,10 +99,10 @@
                 if (res.ok) {
                     window.location.href = targetUrl;
                 } else {
-                    alert('账号或密码错误！');
+                    alert('用户名或密码错误！');
                 }
             } catch (err) {
-                alert('账号或密码错误！');
+                alert('用户名或密码错误！');
             }
         }
     </script>
