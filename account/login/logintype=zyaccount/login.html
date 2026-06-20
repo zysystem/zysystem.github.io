@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYAccount - 登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-card {
+            width: 360px;
+            background: #fff;
+            padding: 35px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+        .login-title {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .input-wrap {
+            margin-bottom: 20px;
+        }
+        .input-wrap input {
+            width: 100%;
+            height: 44px;
+            padding: 0 14px;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .input-wrap input:focus {
+            border-color: #4096ff;
+        }
+        .login-btn {
+            width: 100%;
+            height: 46px;
+            background: #4096ff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .login-btn:hover {
+            background: #1677ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2 class="login-title">ZY账号登录</h2>
+        <div class="input-wrap">
+            <input type="text" id="userCode" placeholder="请输入邮箱">
+        </div>
+        <div class="input-wrap">
+            <input type="password" id="pwd" placeholder="请输入密码">
+        </div>
+        <button class="login-btn" onclick="login()">登录</button>
+    </div>
+
+    <script>
+        async function login() {
+            // 获取输入内容
+            let code = document.getElementById('userCode').value.trim();
+            let pwd = document.getElementById('pwd').value.trim();
+
+            // 空值校验
+            if (!code) {
+                alert('请输入邮箱');
+                return;
+            }
+            if (!pwd) {
+                alert('请输入密码');
+                return;
+            }
+
+            // 目标跳转地址
+            const targetUrl = `https://zysystem.github.io/GiftCards/${code}.html`;
+            try {
+                // 检测页面是否存在
+                const res = await fetch(targetUrl, { method: 'HEAD' });
+                if (res.ok) {
+                    window.location.href = targetUrl;
+                } else {
+                    alert('未找到该优惠码，请输入正确的优惠码！');
+                }
+            } catch (err) {
+                alert('未找到该优惠码，请输入正确的优惠码！');
+            }
+        }
+    </script>
+</body>
+</html>
