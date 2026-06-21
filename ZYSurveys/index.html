@@ -39,8 +39,8 @@
     <div class="mask-box" id="limitMask">
         <div class="tip-card">
             <div class="tip-text">This service is not available in China.</div>
-            <button id="btnYes">Continue</button>
-            <button id="btnNo">Close</button>
+            <button id="btnContinue">Continue</button>
+            <button id="btnClose">Close</button>
         </div>
     </div>
 
@@ -56,8 +56,8 @@
     <script>
         const mask = document.getElementById('limitMask');
         const page = document.getElementById('pageContent');
-        const btnYes = document.getElementById('btnYes');
-        const btnNo = document.getElementById('btnNo');
+        const btnContinue = document.getElementById('btnContinue');
+        const btnClose = document.getElementById('btnClose');
 
         fetch('https://ipapi.co/json/')
             .then(res => res.json())
@@ -77,14 +77,14 @@
                 page.style.display = 'block';
             });
 
-        // 点击Yes，展示网站内容
-        btnYes.onclick = () => {
+        // 点击Continue，展示网站内容
+        btnContinue.onclick = () => {
             mask.style.display = 'none';
             page.style.display = 'block';
         };
 
-        // 点击No，关闭当前标签页
-        btnNo.onclick = () => {
+        // 点击Close，关闭当前标签页
+        btnClose.onclick = () => {
             window.close();
         };
     </script>
