@@ -1,28 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>ZYSurveys</title>
     <style>
-        /* 默认隐藏主页面，只展示限制提示 */
         .main-content {
             display: none;
         }
-        .country-limit-text {
-            font-size: 26px;
-            color: #f33;
+        .mask-box {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .tip-card {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
             text-align: center;
-            margin-top: 120px;
+        }
+        .tip-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        button {
+            padding: 8px 20px;
+            margin: 0 8px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- 中国地区访问提示文字 -->
-    <div class="country-limit-text" id="limitNotice">
-        Unable to access due to country restrictions.
+    <!-- 地区限制弹窗 -->
+    <div class="mask-box" id="limitMask">
+        <div class="tip-card">
+            <div class="tip-text">This service is not available in China.</div>
+            <button id="btnYes">Yes</button>
+            <button id="btnNo">No</button>
+        </div>
     </div>
 
-    <!-- 正常网站主体内容 -->
+    <!-- 网站主体 -->
     <div class="main-content" id="pageContent">
         <h3>ZYSurveys, a free survey creation tool</h3>
         <h4>Our advantages:</h4>
@@ -32,26 +54,39 @@
     </div>
 
     <script>
-        // 请求IP地理位置接口
+        const mask = document.getElementById('limitMask');
+        const page = document.getElementById('pageContent');
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+
         fetch('https://ipapi.co/json/')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
-                // CN = 中国大陆地区代码
                 if (data.country_code === 'CN') {
-                    // 国内：保持提示显示，隐藏页面
-                    document.getElementById('limitNotice').style.display = 'block';
-                    document.getElementById('pageContent').style.display = 'none';
+                    // 国内访问：显示弹窗
+                    mask.style.display = 'flex';
                 } else {
-                    // 海外：隐藏限制提示，展示网站
-                    document.getElementById('limitNotice').style.display = 'none';
-                    document.getElementById('pageContent').style.display = 'block';
+                    // 海外直接展示页面
+                    mask.style.display = 'none';
+                    page.style.display = 'block';
                 }
             })
             .catch(() => {
-                // 接口请求失败（网络/跨域）兜底，直接开放页面
-                document.getElementById('limitNotice').style.display = 'none';
-                document.getElementById('pageContent').style.display = 'block';
+                // IP接口异常兜底，直接开放页面
+                mask.style.display = 'none';
+                page.style.display = 'block';
             });
+
+        // 点击Yes，展示网站内容
+        btnYes.onclick = () => {
+            mask.style.display = 'none';
+            page.style.display = 'block';
+        };
+
+        // 点击No，关闭当前标签页
+        btnNo.onclick = () => {
+            window.close();
+        };
     </script>
 </body>
 </html>
