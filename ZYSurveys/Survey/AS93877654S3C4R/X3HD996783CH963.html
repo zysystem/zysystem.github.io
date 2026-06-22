@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey</title>
+    <meta http-equiv="refresh" content="5; url=https://api-zy.netlify.app/Common/Survey/SurveyOK_type=yes">
+    <style>
+        body{
+            text-align:center;
+            padding-top:50px;
+            font-size:20px;
+            background:#111;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <p>Those are all the questions we have to ask you. Thank you for your time.</p></p>
+    <p>If not, please<a href="https://moonbazaar.xyz" style="color:#42a5f5">click here</a></p>
+
+    <script>
+        let t=5;
+        setInterval(()=>{
+            t--;
+            document.getElementById("time").innerText=t;
+            if(t<=0)clearInterval();
+        },1000);
+    </script>
+</body>
+</html>
