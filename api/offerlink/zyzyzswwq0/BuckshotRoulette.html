@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>api</title>
+    <!-- 引入EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        .box {
+            margin: 50px auto;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="email" id="targetEmail" placeholder="Please enter the recipient's email">
+        <button onclick="sendEmail()">Send an email</button>
+    </div>
+
+    <script>
+        // 你的 Public Key
+        emailjs.init("mjyzk1MyoLlAQImk2");
+
+        function sendEmail() {
+            // 获取输入框里的邮箱
+            const toEmail = document.getElementById('targetEmail').value.trim();
+            // 简单邮箱格式校验
+            const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!toEmail || !reg.test(toEmail)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // ========== 这里替换成你自己的 ID ==========
+            const serviceId = "service_y8vrkfj";
+            const templateId = "template_ixmekwa";
+            // =========================================
+
+            // 邮件内容配置
+            const mailData = {
+                to_email: toEmail,
+                subject: "Automatic web page email notifications",
+                message: "This is the content of the email automatically sent by the website with one click"
+            };
+
+            // 执行发送
+            emailjs.send(serviceId, templateId, mailData)
+                .then(function() {
+                    alert("Email sent successfully!");
+                }, function(error) {
+                    alert("Send failed:" + error.text);
+                });
+        }
+    </script>
+</body>
+</html>
