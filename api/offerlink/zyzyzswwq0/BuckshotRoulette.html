@@ -28,23 +28,12 @@
 </head>
 <body>
     <div class="box">
-        <input type="email" id="targetEmail" placeholder="Please enter the recipient's email">
-        <button onclick="sendEmail()">Send an email</button>
+        <button onclick="sendEmail()">Send the link to the email on your account to get the offer</button>
     </div>
 
     <script>
         // 你的 Public Key
         emailjs.init("mjyzk1MyoLlAQImk2");
-
-        function sendEmail() {
-            // 获取输入框里的邮箱
-            const toEmail = document.getElementById('targetEmail').value.trim();
-            // 简单邮箱格式校验
-            const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!toEmail || !reg.test(toEmail)) {
-                alert('Please enter a valid email address');
-                return;
-            }
 
             // ========== 这里替换成你自己的 ID ==========
             const serviceId = "service_y8vrkfj";
@@ -53,7 +42,7 @@
 
             // 邮件内容配置
             const mailData = {
-                to_email: toEmail,
+                to_email: 17502160564@163.com,
                 subject: "Automatic web page email notifications",
                 message: "This is the content of the email automatically sent by the website with one click"
             };
