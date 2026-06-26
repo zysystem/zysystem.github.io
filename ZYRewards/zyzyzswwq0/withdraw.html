@@ -4,21 +4,46 @@ ZYRewards - 提现</button></br>
 <button disabled onclick="window.location.href='/ZYRewards/zyzyzswwq0/withdraw.html'">提现</button>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/history.html'">交易历史</button>
 <button>账户设置</button></br>
-推荐提供商</br>
-<button onclick="openNewTab()">BitLabs</button>
+<body>
+    <div class="box">
+        <div class="title">你的积分（有延迟）：</div>
+        <div class="balance" id="balanceText">加载中...</div>
+        <div class="unit">ZYCoins</div>
+    </div>
 
-<script>
-function openNewTab() {
-  const url = "https://web.bitlabs.ai/?token=f8a7fd37-0d59-4981-b14d-7016602c9583&currency=ZYCoins&exchange=49&uid=17939-.-.-92mt9ukl89m30d1n9gtn6p8z9j1vv8&user_ip=183.192.110.1";
-  window.open(url, "_blank");
-}
-</script>
+    <script>
+        // 远程余额文件地址
+        const balanceUrl = "https://zysystem.github.io/ZYRewards/zyzyzswwq0/Balance.txt";
+        const balanceDom = document.getElementById("balanceText");
 
-<button onclick="openNewTab1()">ZYLabs</button>
+        // 获取余额
+        async function getBalance() {
+            try {
+                const res = await fetch(balanceUrl);
+                if (!res.ok) throw new Error("文件获取失败");
+                // 读取文本并去除首尾空格换行
+                let numStr = await res.text();
+                let balance = parseFloat(numStr.trim());
 
-<script>
-function openNewTab1() {
-  const url = "file:///D:/ZYTempFiles/ZYLabs.html";
-  window.open(url, "_blank");
-}
-</script>
+                if (isNaN(balance)) {
+                    balanceDom.innerText = "余额数据异常";
+                    balanceDom.className = "balance error";
+                    return;
+                }
+                // 格式化金额保留2位小数
+                balanceDom.innerText = balance.toFixed(2);
+            } catch (err) {
+                balanceDom.innerText = "网络加载失败";
+                balanceDom.className = "balance error";
+                console.error("获取余额错误：", err);
+            }
+        }
+        // 页面加载执行
+        getBalance();
+    </script>
+</body></br>
+<input type="radio" name="gender" value="man" id="man">
+<label for="man">男</label>
+
+<input type="radio" name="gender" value="woman" id="woman">
+<label for="woman">女</label>
