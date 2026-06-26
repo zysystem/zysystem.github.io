@@ -92,7 +92,7 @@
             }
 
             // 目标跳转地址
-            const targetUrl = `https://zysystem.github.io/account/${code}/authorise/${pwd}/ZYAccount.html`;
+            const targetUrl = `https://zysystem.github.io/account/${code}/${pwd}/authorise/ZYAccount.html`;
             try {
                 // 检测页面是否存在
                 const res = await fetch(targetUrl, { method: 'HEAD' });
