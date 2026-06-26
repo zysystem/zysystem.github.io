@@ -1,12 +1,24 @@
-<title>ZYRewards - 提现</title>
-ZYRewards - 提现</button></br>
-<button onclick="window.location.href='/ZYRewards/zyzyzswwq0/home.html'">仪表盘</button>
-<button disabled onclick="window.location.href='/ZYRewards/zyzyzswwq0/withdraw.html'">提现</button>
-<button onclick="window.location.href='/ZYRewards/zyzyzswwq0/history.html'">交易历史</button>
-<button>账户设置</button></br>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>ZYRewards - 提现</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+        body{background:#f5f7fa;display:flex;align-items:center;justify-content:center;height:100vh}
+        .box{background:#fff;padding:40px 60px;border-radius:16px;box-shadow:0 4px 20px #00000015;text-align:center}
+        .title{font-size:18px;color:#666;margin-bottom:12px}
+        .balance{font-size:42px;font-weight:bold;color:#222;margin:10px 0}
+        .unit{font-size:16px;color:#888}
+        .loading{color:#999}
+        .error{color:#f44336}
+    </style>
+</head>
 <body>
     <div class="box">
-        <div class="title">你的积分（有延迟）：</div><div class="balance" id="balanceText">加载中...</div><div class="unit">ZYCoins</div>
+        <div class="title">你的积分（有延迟）：</div>
+        <div class="balance" id="balanceText">加载中...</div>
+        <div class="unit">ZYCoins</div>
     </div>
 
     <script>
@@ -39,9 +51,10 @@ ZYRewards - 提现</button></br>
         // 页面加载执行
         getBalance();
     </script>
-</body>
 <input type="radio" name="gender" value="man" id="man">
 <label for="man">男</label>
 
 <input type="radio" name="gender" value="woman" id="woman">
 <label for="woman">女</label>
+</body>
+</html>
