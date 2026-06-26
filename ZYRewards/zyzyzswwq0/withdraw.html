@@ -5,7 +5,6 @@
 <title>ZYRewards - 提现</title>
 </head>
 <body>
-<div class="box"><div class="title">你的积分（有延迟）：</div><div class="balance" id="balanceText">加载中...</div><div class="unit">ZYCoins</div></div>
-<script>const balanceUrl="https://corsproxy.io/?https://zysystem.github.io/ZYRewards/zyzyzswwq0/Balance.txt";const balanceDom=document.getElementById("balanceText");async function getBalance(){try{const res=await fetch(balanceUrl);if(!res.ok)throw new Error("文件获取失败");let numStr=await res.text();let balance=parseFloat(numStr.trim());if(isNaN(balance)){balanceDom.innerText="余额数据异常";balanceDom.className="balance error";return;}balanceDom.innerText=balance.toFixed(2);}catch(err){balanceDom.innerText="网络加载失败";balanceDom.className="balance error";console.error("获取余额错误：",err);}}getBalance();</script>
+<div class="box"><div class="title">你的积分（有延迟）：</div><div class="balance" id="balanceText">加载中...</div><div class="unit">ZYCoins</div></div><script>const balanceUrl="https://corsproxy.io/?https://zysystem.github.io/ZYRewards/zyzyzswwq0/Balance.txt";const balanceDom=document.getElementById("balanceText");async function getBalance(){try{const res=await fetch(balanceUrl);if(!res.ok)throw new Error("文件获取失败");let numStr=await res.text();let balance=parseFloat(numStr.trim());if(isNaN(balance)){balanceDom.innerText="余额数据异常";balanceDom.className="balance error";return;}balanceDom.innerText=balance.toFixed(2);}catch(err){balanceDom.innerText="网络加载失败";balanceDom.className="balance error";console.error("获取余额错误：",err);}}getBalance();</script>
 </body>
 </html>
