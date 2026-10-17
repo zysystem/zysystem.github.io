@@ -5,8 +5,8 @@ ZYRewards - 仪表盘</button></br>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/history.html'">交易历史</button>
 <button onclick="window.location.href='https://zyaccount.talk4fun.net/Account/17502160564@163.com/3e4r6y8i/IKBG/Setting/ZYRewards.html'">账户设置</button></br>
 
-<!-- 消息提示区域 -->
-<div id="msgAlert" style="margin:10px 0; padding:8px; color:green; font-weight:bold;"></div>
+<!-- 消息提示区域，默认隐藏 -->
+<div id="msgAlert" style="margin:10px 0; padding:8px; color:green; font-weight:bold; display:none;"></div>
 
 <!-- 新增：用来放Balance页面内容的容器 -->
 <div id="balanceContent" style="margin-top:20px;border:1px solid #ccc;padding:10px;"></div>
@@ -37,10 +37,12 @@ async function loadBalancePage() {
 // 页面加载完成后执行
 window.addEventListener("DOMContentLoaded", function(){
   loadBalancePage();
-  // 读取Message参数并显示提示
+  // 读取Message参数，有内容才显示
   const msg = getUrlParam("Message");
   if(msg){
-    document.getElementById("msgAlert").innerText = msg;
+    const alertBox = document.getElementById("msgAlert");
+    alertBox.innerText = msg;
+    alertBox.style.display = "block";
   }
 });
 
