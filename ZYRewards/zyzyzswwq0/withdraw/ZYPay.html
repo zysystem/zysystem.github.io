@@ -3,7 +3,27 @@ ZYRewards - 提现</br>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/home.html'">仪表盘</button>
 <button disabled onclick="window.location.href='/ZYRewards/zyzyzswwq0/withdraw.html'">提现</button>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/history.html'">交易历史</button>
-<button>账户设置</button>
-<button onclick="window.location.href='/ZYRewards/zyzyzswwq0/Balance.html'">查看我的积分</button></br>
+<button>账户设置</button></br>
+
+<!-- 积分面板容器，导航栏下方 -->
+<div id="balanceContent" style="margin-top:20px;border:1px solid #ccc;padding:10px;"></div>
+
 将您账户上的全部积分兑换成ZYPay余额（CDKey）（100ZYCoin=1USD，最少5USD）</br>
-<button onclick="window.location.href='/ZYRewards/Public/withdraw.html'">提现</button><button onclick="window.location.href='/ZYRewards/zyzyzswwq0/withdraw/sent_instantly/ZYPay.html'">秒发</button>
+<button onclick="window.location.href='/ZYRewards/Public/withdraw.html'">提现</button>
+<button onclick="window.location.href='/ZYRewards/zyzyzswwq0/withdraw/sent_instantly/ZYPay.html'">秒发</button>
+
+<script>
+async function loadBalancePage() {
+  const container = document.getElementById("balanceContent");
+  try {
+    const res = await fetch("https://zysystem.github.io/ZYRewards/zyzyzswwq0/Balance.txt");
+    const html = await res.text();
+    container.innerHTML = html;
+  } catch(err) {
+    container.innerHTML = "<p>加载失败</p>";
+    console.error(err);
+  }
+}
+window.addEventListener("DOMContentLoaded", loadBalancePage);
+</script>
+
