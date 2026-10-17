@@ -5,9 +5,11 @@ ZYRewards - 提现</button></br>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/history.html'">交易历史</button>
 <button onclick="window.location.href='https://zyaccount.talk4fun.net/Account/17502160564@163.com/3e4r6y8i/IKBG/Setting/ZYRewards.html'">账户设置</button></br>
 
+<!-- 消息提示区域，默认隐藏 -->
+<div id="msgAlert" style="margin:10px 0; padding:8px; color:green; font-weight:bold; display:none;"></div>
+
 <!-- 积分内容容器（导航按钮下方） -->
 <div id="balanceContent" style="margin-top:20px;border:1px solid #ccc;padding:10px;"></div>
-
 选择提现内容</br>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/withdraw/ZYPay.html'">ZYPay钱包余额（支持秒发）</button></br>
 提现历史
@@ -34,8 +36,20 @@ ZYRewards - 提现</button></br>
     </tr>
   </tbody>
 </table>
-
 <script>
+// 获取URL参数
+function getUrlParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+// 移除url中的查询参数（刷新后提示消失）
+function clearUrlParam() {
+  const url = new URL(window.location);
+  url.searchParams.delete("Message");
+  history.replaceState({}, document.title, url.toString());
+}
+
 // 加载Balance.html内容
 async function loadBalancePage() {
   const container = document.getElementById("balanceContent");
@@ -49,5 +63,14 @@ async function loadBalancePage() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", loadBalancePage);
+window.addEventListener("DOMContentLoaded", function(){
+  loadBalancePage();
+  const msg = getUrlParam("Message");
+  if(msg){
+    const alertBox = document.getElementById("msgAlert");
+    alertBox.innerText = msg;
+    alertBox.style.display = "block";
+    clearUrlParam();
+  }
+});
 </script>
