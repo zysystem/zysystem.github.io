@@ -41,7 +41,7 @@ ZYRewards - 提现</button></br>
 async function loadBalancePage() {
   const container = document.getElementById("balanceContent");
   try {
-    const res = await fetch("https://zysystem.github.io/ZYRewards/zyzyzswwq0/Balance.html");
+    const res = await fetch("https://zysystem.github.io/ZYRewards/zyzyzswwq0/Balance.txt");
     const html = await res.text();
     container.innerHTML = html;
   } catch(err) {
