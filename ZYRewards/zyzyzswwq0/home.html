@@ -3,28 +3,41 @@ ZYRewards - 仪表盘</button></br>
 <button disabled onclick="window.location.href='/ZYRewards/zyzyzswwq0/home.html'">仪表盘</button>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/withdraw.html'">提现</button>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/history.html'">交易历史</button>
-<button>账户设置</button>
-<button onclick="window.location.href='/ZYRewards/zyzyzswwq0/Balance.html'">查看我的积分</button></br>
+<button>账户设置</button></br>
+
+<!-- 新增：用来放Balance页面内容的容器 -->
+<div id="balanceContent" style="margin-top:20px;border:1px solid #ccc;padding:10px;"></div>
+
 推荐提供商</br>
 <button onclick="openNewTab()">ZYLabs</button>
 <button onclick="openNewTab1()">BitLabs</button>
 <button onclick="openNewTab2()">CPX Research（1USD=100ZYCoin）</button>
 
 <script>
+// 加载Balance.html内容到页面
+async function loadBalancePage() {
+  const container = document.getElementById("balanceContent");
+  try {
+    const res = await fetch("https://zysystem.github.io/ZYRewards/zyzyzswwq0/Balance.html");
+    const html = await res.text();
+    container.innerHTML = html;
+  } catch(err) {
+    container.innerHTML = "<p>加载失败</p>";
+    console.error(err);
+  }
+}
+
+// 页面加载完成后执行
+window.addEventListener("DOMContentLoaded", loadBalancePage);
+
 function openNewTab() {
   const url = "https://zysystem.github.io/ZYRewards/zyzyzswwq0/ZYLabs.html";
   window.open(url, "_blank");
 }
-</script>
-
-<script>
 function openNewTab1() {
   const url = "https://web.bitlabs.ai/?token=8b2460c2-f8ce-4cf9-a7ed-a4c3470ec79e&currency=ZYCoin&exchange=70&uid=17939-.-.-Om00zfnZXqVSzieUIX4zD2xGEPnlNy&user_ip=117.185.176.152";
   window.open(url, "_blank");
 }
-</script>
-
-<script>
 function openNewTab2() {
   const url = "https://offers.cpx-research.com/index.php?app_id=31378&ext_user_id=17939-.-.-iqo3j5fb6fn305qvlaqrp5ruw0e51p";
   window.open(url, "_blank");
