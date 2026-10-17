@@ -21,6 +21,13 @@ function getUrlParam(name) {
   return params.get(name);
 }
 
+// 移除url中的查询参数（刷新后提示消失）
+function clearUrlParam() {
+  const url = new URL(window.location);
+  url.searchParams.delete("Message");
+  history.replaceState({}, document.title, url.toString());
+}
+
 // 加载Balance.html内容到页面
 async function loadBalancePage() {
   const container = document.getElementById("balanceContent");
@@ -37,12 +44,13 @@ async function loadBalancePage() {
 // 页面加载完成后执行
 window.addEventListener("DOMContentLoaded", function(){
   loadBalancePage();
-  // 读取Message参数，有内容才显示
   const msg = getUrlParam("Message");
   if(msg){
     const alertBox = document.getElementById("msgAlert");
     alertBox.innerText = msg;
     alertBox.style.display = "block";
+    // 清理地址栏?Message参数，刷新页面就没有提示了
+    clearUrlParam();
   }
 });
 
