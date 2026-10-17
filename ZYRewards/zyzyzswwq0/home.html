@@ -5,15 +5,22 @@ ZYRewards - 仪表盘</button></br>
 <button onclick="window.location.href='/ZYRewards/zyzyzswwq0/history.html'">交易历史</button>
 <button onclick="window.location.href='https://zyaccount.talk4fun.net/Account/17502160564@163.com/3e4r6y8i/IKBG/Setting/ZYRewards.html'">账户设置</button></br>
 
+<!-- 消息提示区域 -->
+<div id="msgAlert" style="margin:10px 0; padding:8px; color:green; font-weight:bold;"></div>
+
 <!-- 新增：用来放Balance页面内容的容器 -->
 <div id="balanceContent" style="margin-top:20px;border:1px solid #ccc;padding:10px;"></div>
-
 推荐提供商</br>
 <button onclick="openNewTab()">ZYLabs</button>
 <button onclick="openNewTab1()">BitLabs</button>
 <button onclick="openNewTab2()">CPX Research（1USD=100ZYCoin）</button>
-
 <script>
+// 获取URL参数
+function getUrlParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
 // 加载Balance.html内容到页面
 async function loadBalancePage() {
   const container = document.getElementById("balanceContent");
@@ -28,7 +35,14 @@ async function loadBalancePage() {
 }
 
 // 页面加载完成后执行
-window.addEventListener("DOMContentLoaded", loadBalancePage);
+window.addEventListener("DOMContentLoaded", function(){
+  loadBalancePage();
+  // 读取Message参数并显示提示
+  const msg = getUrlParam("Message");
+  if(msg){
+    document.getElementById("msgAlert").innerText = msg;
+  }
+});
 
 function openNewTab() {
   const url = "https://zysystem.github.io/ZYRewards/zyzyzswwq0/ZYLabs.html";
